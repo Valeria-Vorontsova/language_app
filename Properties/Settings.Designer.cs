@@ -25,7 +25,7 @@ namespace language_app.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Form1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Study Flashcards")]
         public string Управление {
             get {
                 return ((string)(this["Управление"]));

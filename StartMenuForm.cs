@@ -12,9 +12,15 @@ namespace language_app
 {
     public partial class StartMenuForm: Form
     {
+        public static StartMenuForm Instance { get; private set; }
         public StartMenuForm()
         {
             InitializeComponent();
+            Instance = this;
+        }
+        public void ShowFromChild()
+        {
+            this.Show();
         }
         private void btnGoToManage_Click(object sender, EventArgs e)
         {
@@ -26,6 +32,14 @@ namespace language_app
         private void btnGoToLearn_Click(object sender, EventArgs e)
         {
             Form1 mainForm = new Form1();
+
+            // Проверка, есть ли карточки
+            if (!mainForm.HasCards())
+            {
+                MessageBox.Show("Добавьте карточки перед началом обучения!");
+                return;
+            }
+
             mainForm.ShowLearnTab();
             mainForm.Show();
             this.Hide();
@@ -35,5 +49,9 @@ namespace language_app
             Application.Exit();
         }
 
+        private void StartMenuForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
