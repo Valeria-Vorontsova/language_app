@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Управление" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Form1</Value>
+      <Value Profile="(Default)">Study Flashcards</Value>
     </Setting>
   </Settings>
 </SettingsFile>
