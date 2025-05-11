@@ -114,7 +114,6 @@
             this.Name = "StartMenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Study Flashcards";
-            this.Load += new System.EventHandler(this.StartMenuForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
 
