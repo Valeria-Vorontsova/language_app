@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace language_app
@@ -40,43 +37,46 @@ namespace language_app
         }
         private void UpdateDataGridView()
         {
-            dgvCards.DataSource = null;
-            dgvCards.Columns.Clear();
-
-            var data = _repository?.GetAll() ?? new List<Wordcard>();
-            dgvCards.DataSource = data;
-
-            if (dgvCards.Columns.Contains("Word"))
+            try
             {
-                dgvCards.Columns["Word"].HeaderText = "Слово";
-            }
+                dgvCards.SuspendLayout();
+                dgvCards.Columns.Clear();
+                dgvCards.DataSource = null;
 
-            if (dgvCards.Columns.Contains("Translation"))
+                var bindingSource = new BindingSource();
+                bindingSource.DataSource = _repository?.GetAll() ?? new List<Wordcard>();
+
+                DataGridViewTextBoxColumn wordColumn = new DataGridViewTextBoxColumn();
+                wordColumn.DataPropertyName = "Word";
+                wordColumn.HeaderText = "Слово";
+                wordColumn.Name = "Word";
+
+                DataGridViewTextBoxColumn translationColumn = new DataGridViewTextBoxColumn();
+                translationColumn.DataPropertyName = "Translation";
+                translationColumn.HeaderText = "Перевод";
+                translationColumn.Name = "Translation";
+
+                dgvCards.Columns.Add(wordColumn);
+                dgvCards.Columns.Add(translationColumn);
+                dgvCards.DataSource = bindingSource;
+                dgvCards.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
             {
-                dgvCards.Columns["Translation"].HeaderText = "Перевод";
+                MessageBox.Show($"Ошибка при обновлении таблицы: {ex.Message}");
+            }
+            finally
+            {
+                dgvCards.ResumeLayout();
             }
         }
-
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void dgvCards_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
-        }
-
-        private void tabManage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
+            if (e.RowIndex >= 0 && e.RowIndex < _repository.GetAll().Count)
+            {
+                // Безопасная обработка выделения
+                _currentCard = _repository.GetAll()[e.RowIndex];
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -215,11 +215,6 @@ namespace language_app
         {
             StartLearningSession();
         }
-
-        private void lblRes_Click(object sender, EventArgs e)
-        {
-
-        }
         private void btnCheck_Click(object sender, EventArgs e)
         {
             CheckLearningAnswer();
@@ -272,16 +267,6 @@ namespace language_app
                 var menu = new StartMenuForm();
                 menu.Show();
             }
-        }
-
-        private void lblProgress_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTransAdd_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

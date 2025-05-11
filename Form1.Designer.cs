@@ -87,7 +87,6 @@ namespace language_app
             this.tabManage.Size = new System.Drawing.Size(1044, 555);
             this.tabManage.TabIndex = 0;
             this.tabManage.Text = "Управление";
-            this.tabManage.Click += new System.EventHandler(this.tabManage_Click);
             // 
             // btnBack
             // 
@@ -211,7 +210,7 @@ namespace language_app
             this.dgvCards.RowTemplate.Height = 24;
             this.dgvCards.Size = new System.Drawing.Size(1035, 285);
             this.dgvCards.TabIndex = 0;
-            this.dgvCards.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            this.dgvCards.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCards_CellClick);
             // 
             // clmn_Word
             // 
@@ -280,7 +279,6 @@ namespace language_app
             this.lblRes.TabIndex = 4;
             this.lblRes.Text = "Result";
             this.lblRes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblRes.Click += new System.EventHandler(this.lblRes_Click);
             // 
             // lblProgress
             // 
@@ -295,7 +293,6 @@ namespace language_app
             this.lblProgress.Size = new System.Drawing.Size(422, 97);
             this.lblProgress.TabIndex = 5;
             this.lblProgress.Text = "Прогресс:";
-            this.lblProgress.Click += new System.EventHandler(this.lblProgress_Click);
             // 
             // btnCheck
             // 
@@ -325,7 +322,6 @@ namespace language_app
             this.txtTransAdd.Name = "txtTransAdd";
             this.txtTransAdd.Size = new System.Drawing.Size(429, 72);
             this.txtTransAdd.TabIndex = 1;
-            this.txtTransAdd.TextChanged += new System.EventHandler(this.txtTransAdd_TextChanged);
             // 
             // lblWord
             // 
@@ -359,7 +355,6 @@ namespace language_app
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = global::language_app.Properties.Settings.Default.Управление;
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabManage.ResumeLayout(false);
             this.tabManage.PerformLayout();

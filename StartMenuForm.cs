@@ -48,10 +48,5 @@ namespace language_app
         {
             Application.Exit();
         }
-
-        private void StartMenuForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
